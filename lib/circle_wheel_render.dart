@@ -717,8 +717,7 @@ class RenderCircleListViewport extends RenderBox
   }
 
   @override
-  RevealedOffset getOffsetToReveal(RenderObject target, double alignment,
-      {Rect? rect}) {
+  RevealedOffset getOffsetToReveal(RenderObject target, double alignment, {Axis? axis, Rect? rect}) {
     // `target` is only fully revealed when in the selected/center position. Therefore,
     // this method always returns the offset that shows `target` in the center position,
     // which is the same offset for all `alignment` values.
@@ -729,8 +728,7 @@ class RenderCircleListViewport extends RenderBox
     RenderObject child = target;
     while (child.parent != this) child = child.parent as RenderObject;
 
-    final CircleListParentData? parentData =
-        child.parentData as CircleListParentData?;
+    final CircleListParentData? parentData = child.parentData as CircleListParentData?;
     final double targetOffset = axis == Axis.horizontal
         ? parentData!.offset.dx
         : parentData!.offset.dy; // the so-called "centerPosition"
